@@ -16,13 +16,16 @@ class Welcome extends CI_Controller
 	public function index($id = false)
 	{
 		if ($id === false) {
-			$data['images'] = $this->model->read(); // result_array
+			$data['images'] = $this->model->read();
+			$this->load->view('header');
+			$this->load->view('home', $data);
+			$this->load->view('footer'); // result_array
 		} else {
 			$data['image'] = $this->model->read($id); // single object
+			$this->load->view('header');
+			$this->load->view('image', $data);
+			$this->load->view('footer');
 		}
-		$this->load->view('header');
-		$this->load->view('images', $data);
-		$this->load->view('footer');
 	}
 
 	public function create($id = false)
