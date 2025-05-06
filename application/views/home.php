@@ -1,16 +1,42 @@
-<main class="container mx-auto py-12 px-4">
-    <div class="mb-10 text-center">
-        <h2 class="text-3xl font-bold text-gray-800 mb-3">My Collection</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Browse through this curated collection of beautiful moments captured
-            in time.</p>
-    </div>
-    <?php if (count($images) > 0): ?>
-        <button class="px-3 py-2 bg-red-600 rounded-lg text-white">
-            <a onclick="return confirm('Apakah kamu yakin ingin menghapus semua data ini ?')"
-                href="<?php echo site_url('welcome/deleteAll') ?>"> Delete All</a>
-        </button>
-    <?php endif; ?>
-    <div class="grid grid-cols-1 md:grid-cols2 lg:grid-cols-3 gap-3 my-4">
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
+
+<main class="container mx-auto px-4 py-8 flex-grow">
+    <div class="space-y-8">
+        <!-- Gallery Header -->
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-blue-600 mb-2">My Collection</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Browse through this curated collection of beautiful moments captured in time.
+            </p>
+        </div>
+
+        <!-- Controls Bar -->
+        <div class="bg-white rounded-lg shadow-sm p-4 sticky top-20 z-10">
+            <div class="flex flex-col md:flex-row justify-between gap-4">
+                <!-- Left Controls -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <!-- View Mode Toggle -->
+                    <div class="bg-blue-50 rounded-lg p-1">
+                        <button id="grid-view" class="px-3 py-1 rounded-md bg-blue-600 text-white text-sm font-medium">
+                            <i class="fas fa-th mr-1"></i> Grid
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Controls -->
+                <div class="flex items-center">
+                    <?php if (count($images) > 0): ?>
+                        <a onclick="return confirm('Are you sure you want to delete all images?')" href="<?= site_url('welcome/deleteAll') ?>" class="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            <i class="fas fa-trash-alt mr-2"></i> Delete All
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Content -->
+        <?php if (count($images) > 0): ?>
+            <div class="grid grid-cols-1 md:grid-cols2 lg:grid-cols-3 gap-3 my-4">
         <?php foreach ($images as $image): ?>
             <div class="group">
                 <article
@@ -68,5 +94,20 @@
                 </article>
             </div>
         <?php endforeach; ?>
+    </div>
+            </div>
+        <?php else: ?>
+            <div class="text-center py-16">
+                <div class="bg-blue-50 rounded-lg p-8 max-w-md mx-auto">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-2">No Images Found</h3>
+                    <p class="text-gray-600 mb-6">
+                        Your gallery is empty. Upload some images to get started!
+                    </p>
+                    <a href="<?= site_url('welcome/create'); ?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Upload Your First Image
+                    </a>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
 </main>
