@@ -1,35 +1,61 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<h6><?= validation_errors(); ?></h6>
-<h6><?= $this->session->flashdata('error'); ?></h6>
+<head>
+  <meta charset="UTF-8">
+  <title>Sistem Multimedia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-  <div class="row">
-    <form action="<?= site_url('welcome/create'); ?>" method="post" enctype="multipart/form-data" class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input name="name" id="name" type="text" class="validate">
-          <label for="name">Name</label>
-        </div>
+<body class="bg-gray-100 min-h-screen p-6">
+
+  <div class="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-6">
+    <h2 class="text-xl font-semibold mb-4 text-gray-800">Create Post</h2>
+
+    <!-- Error & Flash Message -->
+    <div class="mb-4">
+      <?php if (validation_errors()): ?>
+        <div class="text-sm text-red-600 mb-2"><?= validation_errors(); ?></div>
+      <?php endif; ?>
+
+      <?php if ($this->session->flashdata('error')): ?>
+        <div class="text-sm text-red-600"><?= $this->session->flashdata('error'); ?></div>
+      <?php endif; ?>
+    </div>
+
+    <form action="<?= site_url('welcome/create'); ?>" method="post" enctype="multipart/form-data" class="space-y-6">
+
+      <!-- Name Input -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+        <input type="text" name="name" id="name"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" />
       </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea name="description" id="description" class="materialize-textarea"></textarea>
-          <label for="description">Description</label>
-        </div>
+
+      <!-- Description Input -->
+      <div>
+        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+        <textarea name="description" id="description" rows="4"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
       </div>
-      <div class="file-field input-field">
-        <div class="btn light-blue darken-4">
-          <span>Select File</span>
-          <input type="file" name="image1" accept=".jpg,.png,.jpeg">
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
-        </div>
+
+      <!-- File Upload -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Upload Image</label>
+        <input type="file" name="image1" accept=".jpg,.jpeg,.png"
+          class="mt-2 block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700" />
       </div>
-      <div class="row center">
-        <div class="input-field col s12">
-          <button type="submit" class="btn light-blue darken-4">Create</button>
-        </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit"
+          class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Create</button>
       </div>
+
     </form>
   </div>
+
+</body>
+
+</html>

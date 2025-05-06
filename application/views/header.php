@@ -1,6 +1,7 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Sistem Multimedia</title>
@@ -8,10 +9,11 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Material Icons -->
     <link href="<?= site_url('asset/font/material-icon/material-icons.css'); ?>" rel="stylesheet">
 </head>
+
 <body class="bg-gray-50 text-gray-900">
 
     <!-- Navbar -->
@@ -33,6 +35,3 @@
         <a href="#" class="block py-2 border-b border-blue-700">Login</a>
         <a href="<?= site_url('welcome/create'); ?>" class="block py-2">Create</a>
     </div>
-
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-6">

@@ -1,5 +1,5 @@
 <ul class="collection">
-    <?php foreach ($home_post as $data) :?>
+    <?php foreach ($images as $data) :?>
         <li class="collection-item avatar">
             <img src="<?=site_url('upload/post/'.$data['filepath'])?>" alt="" class="circle">
             <p class="title"><?=$data['name'];?></p>
