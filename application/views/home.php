@@ -4,10 +4,12 @@
         <p class="text-gray-600 max-w-2xl mx-auto">Browse through this curated collection of beautiful moments captured
             in time.</p>
     </div>
-    <button class="px-3 py-2 bg-red-600 rounded-lg text-white">
-        <a onclick="return confirm('Apakah kamu yakin ingin menghapus semua data ini ?')"
-            href="<?php echo site_url('welcome/deleteAll') ?>"> Delete All</a>
-    </button>
+    <?php if (count($images) > 0): ?>
+        <button class="px-3 py-2 bg-red-600 rounded-lg text-white">
+            <a onclick="return confirm('Apakah kamu yakin ingin menghapus semua data ini ?')"
+                href="<?php echo site_url('welcome/deleteAll') ?>"> Delete All</a>
+        </button>
+    <?php endif; ?>
     <div class="grid grid-cols-1 md:grid-cols2 lg:grid-cols-3 gap-3 my-4">
         <?php foreach ($images as $image): ?>
             <div class="group">
