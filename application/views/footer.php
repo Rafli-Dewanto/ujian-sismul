@@ -8,9 +8,9 @@
         <blockquote class="border-l-4 border-gray-200 pl-4 my-4">
           <p class="text-gray-600">Group</p>
           <ul class="text-gray-700">
+            <li>Mohammad Fierza Heikkal Firdaus</li>
             <li>Rafli Satya Dewanto</li>
-            <li>Fierza Heikkal</li>
-            <li>Timoty Joel</li>
+            <li>Timoty Joel Jeremy C.</li>
           </ul>
         </blockquote>
       </div>
