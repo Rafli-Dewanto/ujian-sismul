@@ -71,20 +71,21 @@ class Welcome extends CI_Controller
 		$this->form_validation->set_rules('description', 'Description', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
-			$data['post'] = $this->model->read($id);
+			$data['images'] = $this->model->read($id);
 			$this->load->view('header');
 			$this->load->view('update', $data);
 			$this->load->view('footer');
 		} else {
-			if ($this->input->post('file')) {
-				$post = $this->model->read($id);
+			// Check if there's a file uploaded
+			if (!empty($_FILES['image']['name'])) {
+				$images = $this->model->read($id);
 
-				$config['upload_path'] = './upload/post';
+				$config['upload_path'] = './upload/images';
 				$config['allowed_types'] = 'jpeg|jpg|png';
 				$config['max_size'] = '100000';
 				$config['file_ext_tolower'] = TRUE;
 				$config['overwrite'] = TRUE;
-				$config['file_name'] = $post->filename;
+				$config['file_name'] = $images->filepath;
 
 				$this->load->library('upload', $config);
 
@@ -96,6 +97,7 @@ class Welcome extends CI_Controller
 					redirect('');
 				}
 			} else {
+				// No file uploaded, just update text fields
 				$this->model->update($id);
 				redirect('');
 			}
@@ -104,11 +106,11 @@ class Welcome extends CI_Controller
 
 	public function delete($id = FALSE)
 	{
-		$post = $this->model->read($id);
+		$img = $this->model->read($id);
 
 		$this->model->delete($id);
 
-		unlink('./upload/post/' . $post->filename);
+		unlink('./upload/post/' . $img->filepath);
 
 		redirect('');
 	}
@@ -127,5 +129,4 @@ class Welcome extends CI_Controller
 
 		redirect('');
 	}
-
 }
