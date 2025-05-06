@@ -110,7 +110,7 @@ class Welcome extends CI_Controller
 
 		$this->model->delete($id);
 
-		unlink('./upload/post/' . $img->filepath);
+		unlink('./upload/images/' . $img->filepath);
 
 		redirect('');
 	}
@@ -119,7 +119,7 @@ class Welcome extends CI_Controller
 	{
 		$this->model->deleteAll();
 
-		$directory = "./upload/post/";
+		$directory = "./upload/images/";
 		$files = glob($directory . "*.*");
 
 		foreach ($files as $file) {
