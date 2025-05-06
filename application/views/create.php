@@ -12,27 +12,33 @@
     <?php endif; ?>
   </div>
 
-  <form action="<?= site_url('welcome/create'); ?>" method="post" enctype="multipart/form-data" class="space-y-6">
+  <form action="<?= site_url('welcome/create'); ?>" method="post" enctype="multipart/form-data" class="space-y-6" id="createPostForm">
 
     <!-- Name Input -->
     <div>
       <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-      <input type="text" name="name" id="name"
+      <input required minlength="3" maxlength="30" type="text" name="name" id="name"
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" />
     </div>
 
     <!-- Description Input -->
     <div>
       <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-      <textarea name="description" id="description" rows="4"
+      <textarea
+        minlength="5"
+        maxlength="500"
+        name="description"
+        id="description"
+        rows="4"
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
     </div>
 
     <!-- File Upload -->
     <div>
       <label class="block text-sm font-medium text-gray-700">Upload Image</label>
-      <input type="file" name="image1" accept=".jpg,.jpeg,.png"
+      <input type="file" name="image1" id="image1" accept=".jpg,.jpeg,.png"
         class="mt-2 block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700" />
+      <div id="fileError" class="text-sm text-red-600 mt-2 hidden">File size exceeds 10MB limit.</div>
     </div>
 
     <!-- Submit Button -->
@@ -43,3 +49,21 @@
 
   </form>
 </div>
+
+<script>
+  document.getElementById('createPostForm').addEventListener('submit', function(event) {
+    const fileInput = document.getElementById('image1');
+    const fileError = document.getElementById('fileError');
+    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+
+    if (fileInput.files.length > 0) {
+      const fileSize = fileInput.files[0].size; // Size in bytes
+      if (fileSize > maxSize) {
+        event.preventDefault(); // Prevent form submission
+        fileError.classList.remove('hidden'); // Show error message
+        return;
+      }
+    }
+    fileError.classList.add('hidden'); // Hide error message if valid
+  });
+</script>
