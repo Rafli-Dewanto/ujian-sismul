@@ -16,19 +16,21 @@
 
 <body class="bg-gray-50 text-gray-900">
 
-    <!-- Navbar -->
-    <nav class="bg-blue-900 text-white shadow">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="<?= site_url(); ?>" class="text-xl font-bold">Sistem Multimedia</a>
-            <div class="hidden md:flex space-x-4">
-                <a href="<?= base_url('Welcome/create'); ?>" class="hover:text-blue-200">Create</a>
-                <a href="#" class="hover:text-blue-200">Login</a>
-            </div>
-            <div class="md:hidden">
-                <button id="mobile-menu-toggle" class="material-icons focus:outline-none">menu</button>
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto py-6 px-4">
+            <div class="flex items-center justify-between">
+                <a href="<?= site_url(); ?>">
+                    <h1 class="text-2xl font-bold text-primary-700">Photo Gallery</h1>
+                </a>
+                <nav>
+                    <a href="<?= base_url('Welcome/create'); ?>"
+                        class="px-4 py-2 bg-primary-500 rounded-lg hover:bg-primary-600 transition duration-300 shadow-md hover:shadow-lg">
+                        Upload New
+                    </a>
+                </nav>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Mobile Nav -->
     <div id="mobile-menu" class="md:hidden hidden bg-blue-800 text-white p-4">

@@ -14,22 +14,41 @@
         <div class="w-full">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <a href="<?= site_url('welcome/index/' . $image->id); ?>">
-                    <article class="overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg">
-                        <img alt="" src="<?= site_url('upload/images/' . $image->filepath); ?>"
+                    <article
+                        class="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition duration-300 bg-white">
+                        <!-- Image -->
+                        <img alt="<?= $image->name ?>" src="<?= site_url('upload/images/' . $image->filepath); ?>"
                             class="h-56 w-full object-cover" />
 
-                        <div class="bg-white p-4 sm:p-6">
-                            <time datetime="2022-10-10" class="block text-xs text-gray-500">
-                                <?= $image->created_at ?>
+                        <!-- Content -->
+                        <div class="p-6">
+                            <!-- Date -->
+                            <time datetime="<?= $image->created_at ?>" class="block text-xs text-gray-400 mb-2">
+                                <?= date('F j, Y', strtotime($image->created_at)) ?>
                             </time>
 
-                            <a href="#">
-                                <h3 class="mt-0.5 text-lg text-gray-900"><?= $image->name ?></h3>
-                            </a>
+                            <!-- Title -->
+                            <h3 class="text-xl font-semibold text-gray-900 hover:text-blue-600 transition">
+                                <?= $image->name ?>
+                            </h3>
 
-                            <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                                <?= $image->description; ?>
+                            <!-- Description -->
+                            <p class="mt-3 text-sm text-gray-600 line-clamp-3">
+                                <?= $image->description ?>
                             </p>
+
+                            <!-- Buttons -->
+                            <div class="mt-6 mx-auto flex justify-between w-full">
+                                <a href="<?= site_url('welcome/update/' . $image->id); ?>"
+                                    class="text-sm font-medium text-blue-600 hover:underline">
+                                    ✏️ Update
+                                </a>
+
+                                <a href="<?= site_url('welcome/delete/' . $image->id); ?>"
+                                    class="text-sm font-medium text-red-600 hover:underline">
+                                    🗑️ Delete
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </a>

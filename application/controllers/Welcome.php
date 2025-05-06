@@ -43,7 +43,7 @@ class Welcome extends CI_Controller
 		} else {
 			$id = uniqid('item', TRUE);
 
-			$config['upload_path'] = './upload/post';
+			$config['upload_path'] = './upload/images';
 			$config['allowed_types'] = 'jpg|jpeg|png';
 			$config['max_size'] = '100000';
 			$config['file_ext_tolower'] = TRUE;
